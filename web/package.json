@@ -1,5 +1,5 @@
 {
-  "name": "sales-tracker",
+  "name": "sales_app_web",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,17 +8,12 @@
     "build-production": "webpack --config webpack.prod.config.js --progress --colors",
     "watch": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iabok/sales-tracker.git"
-  },
-  "author": "",
+  "author": "Abok Isaac",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iabok/sales-tracker/issues"
-  },
-  "homepage": "https://github.com/iabok/sales-tracker#readme",
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^7.0.0",
+    "webpack": "^2.6.1",
     "webpack-bundle-tracker": "^0.2.0"
   }
 }
