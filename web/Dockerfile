@@ -9,12 +9,9 @@ COPY package.json /data/web/
 # Setup
 RUN apk update
 RUN apk upgrade
-RUN apk add --update python3 python3-dev postgresql-client postgresql-dev build-base gettext
-
-# Install node from NodeSource
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs
-
+RUN apk add --update python3 python3-dev postgresql-client postgresql-dev \
+                     build-base gettext bash curl nodejs \
+                     nodejs-npm && npm install npm@latest -g
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
