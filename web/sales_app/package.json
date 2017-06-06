@@ -2,9 +2,11 @@
   "name": "sales-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js --progress --colors",
+    "build-production": "webpack --config webpack.prod.config.js --progress --colors",
+    "watch": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/iabok/sales-tracker/issues"
   },
-  "homepage": "https://github.com/iabok/sales-tracker#readme"
+  "homepage": "https://github.com/iabok/sales-tracker#readme",
+  "devDependencies": {
+    "webpack-bundle-tracker": "^0.2.0"
+  }
 }
