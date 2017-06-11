@@ -23,7 +23,4 @@ RUN apk del -r python3-dev postgresql
 
 # Prepare
 COPY . /data/web/
-RUN mkdir -p sales_app/assets
-RUN mkdir -p sales_app/assets/js
-RUN mkdir -p sales_app/assets/bundles
 RUN mkdir -p sales_app/static/admin
