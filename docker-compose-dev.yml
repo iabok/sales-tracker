@@ -15,7 +15,7 @@ services:
     volumes:
       - ./web:/data/web/
     working_dir: /data/web/sales_app
-    command: /usr/bin/gunicorn sales_app.wsgi:application -w 2 -b :8000 --reload
+    command: python3 manage.py runserver 172.18.0.5:8000
 
   nginx:
     restart: always

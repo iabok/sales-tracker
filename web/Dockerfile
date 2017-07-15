@@ -10,7 +10,7 @@ COPY package.json /data/web/
 RUN apk update
 RUN apk upgrade
 RUN apk add --update python3 python3-dev postgresql-client postgresql-dev \
-                     build-base gettext bash curl nodejs \
+                     build-base libffi-dev gettext bash curl nodejs \
                      nodejs-npm && npm install npm@latest -g
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
@@ -19,7 +19,7 @@ RUN pip3 install -r requirements.txt
 RUN npm install
 
 # Clean
-RUN apk del -r python3-dev postgresql
+#RUN apk del -r python3-dev postgresql
 
 # Prepare
 COPY . /data/web/

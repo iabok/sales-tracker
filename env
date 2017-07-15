@@ -3,3 +3,4 @@ DB_USER=sales_web
 DB_PASS=q1w2e3r4t5
 DB_SERVICE=postgres
 DB_PORT=5432
+SECRET_KEY=xw6zimru2&y8iqg$9fhi9#vm7gkd_xvrouc%1-k7l)w(qca#xg

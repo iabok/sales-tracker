@@ -4,15 +4,21 @@ server {
     server_name not.configured.example.com;
     charset utf-8;
 
-    location /static {
+    # log files
+     access_log  /var/log/nginx/sales_access.log;
+     error_log   /var/log/nginx/sales_error.log;
+
+    location /static/ {
         alias /data/web/sales_app/static;
     }
 
     location / {
-        proxy_pass http://web:8000;
+        proxy_pass http://172.18.0.6:8000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
+
+    sendfile    off;
 
 }
