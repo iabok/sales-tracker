@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'compressor',
 
     # Local apps
-    'base',
+    'home',
 ]
 
 # https://docs.djangoproject.com/en/1.10/topics/auth/passwords/#using-argon2-with-django

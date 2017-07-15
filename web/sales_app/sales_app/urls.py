@@ -18,7 +18,7 @@ sitemaps = {
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'', include('base.urls')),
+    url(r'', include('home.urls')),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
