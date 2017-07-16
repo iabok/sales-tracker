@@ -6,25 +6,6 @@ INTERNAL_IPS = ["172.18.0.5"]
 
 SECRET_KEY = 'xw6zimru2&y8iqg$9fhi9#vm7gkd_xvrouc%1-k7l)w(qca#xg'
 
-# DATABASE SETTINGS
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'development.sqlite3',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    },
-}
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache"
-    }
-}
-
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
