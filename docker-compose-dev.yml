@@ -15,7 +15,7 @@ services:
     volumes:
       - ./web:/data/web/
     working_dir: /data/web/sales_app
-    command: python3 manage.py runserver 172.18.0.5:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
 
   nginx:
     restart: always
@@ -27,6 +27,8 @@ services:
       - web
     links:
       - web:web
+    depends_on:
+      - web
 
   postgres:
     restart: always

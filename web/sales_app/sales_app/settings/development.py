@@ -6,32 +6,17 @@ INTERNAL_IPS = ["172.18.0.5"]
 
 SECRET_KEY = 'xw6zimru2&y8iqg$9fhi9#vm7gkd_xvrouc%1-k7l)w(qca#xg'
 
-# DATABASE SETTINGS
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'development.sqlite3',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    },
-}
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache"
-    }
-}
-
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # DJANGO DEBUG TOOLBAR SETTINGS
 # https://django-debug-toolbar.readthedocs.org
 def show_toolbar(request):
+    """
+     Show the debug toolbar
+    """
     return not request.is_ajax() and request.user and request.user.is_superuser
+
 
 MIDDLEWARE_CLASSES += ["debug_toolbar.middleware.DebugToolbarMiddleware", ]
 INSTALLED_APPS += ["debug_toolbar", ]
@@ -59,6 +44,23 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 )
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        }
+    },
+}
 
 try:
     from local_settings import * # noqa
