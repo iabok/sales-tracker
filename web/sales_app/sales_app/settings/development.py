@@ -12,7 +12,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # DJANGO DEBUG TOOLBAR SETTINGS
 # https://django-debug-toolbar.readthedocs.org
 def show_toolbar(request):
+    """
+     Show the debug toolbar
+    """
     return not request.is_ajax() and request.user and request.user.is_superuser
+
 
 MIDDLEWARE_CLASSES += ["debug_toolbar.middleware.DebugToolbarMiddleware", ]
 INSTALLED_APPS += ["debug_toolbar", ]
@@ -44,16 +48,16 @@ DEBUG_TOOLBAR_PANELS = (
 LOGGING = {
     'version': 1,
     'handlers': {
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django.request': {
-            'handlers':['console'],
+            'handlers': ['console'],
             'propagate': True,
-            'level':'DEBUG',
+            'level': 'DEBUG',
         }
     },
 }
