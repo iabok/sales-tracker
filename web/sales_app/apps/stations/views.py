@@ -1,6 +1,16 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from stations.models import Station
+from stations.forms import StationForm
+
+
+class StationView(FormView):
+    '''
+      Renders the form
+    '''
+    template_name = '../templates/station_form.html'
+    form_class = StationForm
+    success_url = '/success/'
 
 
 class StationCreate(CreateView):
