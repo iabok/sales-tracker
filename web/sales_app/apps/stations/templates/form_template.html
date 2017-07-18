@@ -1,8 +1,8 @@
 {% load bootstrap3 %}
+
 <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_field form.name field_class='form-line' %}
-    {% bootstrap_field form.location field_class='form-line' %}
+    {% bootstrap_form form field_class='form-line' show_label=False error_css_class='error' %}
     <button class="btn btn-lg btn-primary btn-block" type="submit">
         {% bootstrap_icon "star" %} Submit
     </button>
