@@ -8,7 +8,7 @@ class StationCreate(CreateView):
      Creates a new station
     '''
     model = Station
-    template_name = '../templates/station_form.html'
+    template_name = '../templates/station_add_form.html'
     fields = ['name', 'location']
 
     def form_valid(self, form):
@@ -24,6 +24,7 @@ class StationUpdate(UpdateView):
      Updates stations
     '''
     model = Station
+    template_name = '../templates/station_edit_form.html'
     fields = ['name', 'location']
 
 

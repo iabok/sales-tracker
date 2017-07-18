@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'compressor',
+    'bootstrap3',
 
     # Local apps
     'home',

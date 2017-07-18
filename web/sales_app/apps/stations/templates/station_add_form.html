@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="row col-md-6">
+    <div class="card">
+      <div class="header">
+          <h2 class="font-32">
+              Add a station
+          </h2>
+      </div>
+      <div class="body">
+        {% include 'form_template.html' %}
+      </div>
+  </div>
+</div>
+{% endblock %}
