@@ -62,12 +62,11 @@ class StationList(AjaxListView):
     '''
      List of stations
     '''
-    table_class = StationTable
-    context_object_name = "entry_list"
+    context_object_name = "stations"
     template_name = '../templates/station_list.html'
     page_template = '../templates/station_list_page.html'
 
-    
+
     def get_queryset(self):
         '''
          Return all the stations
