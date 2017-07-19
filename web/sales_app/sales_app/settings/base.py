@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 
     # Third party apps
     'compressor',
+    'bootstrap3',
+    'el_pagination',
 
     # Local apps
     'home',
@@ -167,7 +169,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
