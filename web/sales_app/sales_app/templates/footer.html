@@ -35,13 +35,20 @@
 
 <!-- Sparkline Chart Plugin Js -->
 <script src="/static/vendor/jquery-sparkline/jquery.sparkline.js"></script>
-
+<script src="/static/el-pagination/js/el-pagination.js"></script>
+<script>
+    $.endlessPaginate({
+        paginateOnScroll: true,
+        paginateOnScrollChunkSize: 1
+    });
+</script>
 <!-- Custom Js -->
 <script src="/static/js/admin.js"></script>
 <script src="/static/js/pages/index.js"></script>
 
 <!-- Demo Js -->
 <script src="/static/js/demo.js"></script>
+
 
 <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID -->
 <script>

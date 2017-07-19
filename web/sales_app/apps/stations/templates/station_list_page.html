@@ -1,0 +1,31 @@
+{% load el_pagination_tags %}
+
+{% paginate entry_list %}
+{% for entry in entry_list %}
+
+    <tr>
+        <th scope="row"></th>
+        <td>{{entry.name}}</td>
+        <td>{{entry.location}}</td>
+        <td>{{entry.created_date|date:"d-M-Y"}}</td>
+        <td>{{entry.modified_date|date:"d-M-Y"}}</td>
+        <td>
+          <ul class="m-r--5" style="list-style-type:none;">
+              <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                      <li><a href="{% url 'station-update' pk=entry.id %}" class="waves-effect waves-block font-bold col-blue-grey">
+                        <i class="material-icons">edit</i>
+                        Edit</a></li>
+                      <li><a data-target="confirmDelete" href="{% url 'station-delete' pk=entry.id %}" class="waves-effect waves-block font-bold col-blue-grey">
+                        <i class="material-icons">delete</i>
+                        Delete</a></li>
+                  </ul>
+              </li>
+          </ul>
+        </td>
+    </tr>
+{% endfor %}
+{% show_more %}
