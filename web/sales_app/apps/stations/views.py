@@ -2,6 +2,7 @@
  Stations views
 '''
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
 from django.urls import reverse_lazy
 from stations.models import Station
 # from stations.forms import StationForm
@@ -26,7 +27,7 @@ class StationCreate(CreateView):
      Creates a new station
     '''
     model = Station
-    template_name = '../templates/station_add_form.html'
+    template_name = '../templates/station_create.html'
     fields = ['name', 'location']
 
     # def form_valid(self, form):
@@ -42,8 +43,16 @@ class StationUpdate(UpdateView):
      Updates stations
     '''
     model = Station
-    template_name = '../templates/station_edit_form.html'
+    template_name = '../templates/station_update.html'
     fields = ['name', 'location']
+
+
+class StationDetail(DetailView):
+    '''
+     View station details
+    '''
+    model = Station
+    template_name = '../templates/station_detail.html'
 
 
 class StationDelete(DeleteView):
@@ -51,4 +60,5 @@ class StationDelete(DeleteView):
      Deletes a station
     '''
     model = Station
-    success_url = reverse_lazy('station-list')
+    template_name = '../templates/station_confirm_delete.html'
+    success_url = reverse_lazy('station-add')
