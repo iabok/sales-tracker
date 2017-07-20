@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row col-md-6">
+    <div class="card">
+      <div class="header">
+        <h2>
+            <span class="font-32 font-bold col-blue-grey">Delete Product</span>
+        </h2>
+      </div>
+      <div class="body">
+        <form method="{% block form_method %}post{% endblock %}">
+            {% csrf_token %}
+            <p>Are you sure you want to delete <span class="font-bold col-blue-grey">"{{ product.name }}"</span>?</p>
+            <input type="submit" class="btn btn-lg btn-danger" value="Confirm" />
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock %}

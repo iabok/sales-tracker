@@ -20,10 +20,11 @@ admin.autodiscover()
 urlpatterns = [
     url(r'', include('home.urls')),
     url(r'', include('stations.urls')),
+    url(r'', include('products.urls')),
 
     # Admin
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    # url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Sitemap
     url(r'^sitemap\.xml$', index, {'sitemaps': sitemaps}),

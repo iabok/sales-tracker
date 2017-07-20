@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row col-md-6">
+    <div class="card">
+      <div class="header">
+        <h2>
+            <span class="font-32 font-bold col-blue-grey">Products</span>
+        </h2>
+      </div>
+      <div class="body table-responsive">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Unit Price</th>
+                      <th>Date Created</th>
+                      <th>Last modified</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% include 'product_list_page.html' %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}
