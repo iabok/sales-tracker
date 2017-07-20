@@ -5,7 +5,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from el_pagination.views import AjaxListView
-from stations.tables import StationTable
 from stations.models import Station
 # from stations.forms import StationForm
 
