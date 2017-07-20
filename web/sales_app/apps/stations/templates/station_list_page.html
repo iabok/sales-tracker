@@ -1,5 +1,4 @@
 {% load el_pagination_tags %}
-
 {% paginate stations %}
 {% for station in stations %}
 
@@ -19,6 +18,9 @@
                       <li><a href="{% url 'station-update' pk=station.id %}" class="waves-effect waves-block font-bold col-blue-grey">
                         <i class="material-icons">edit</i>
                         Edit</a></li>
+                        <li><a href="{% url 'station-details' pk=station.id %}" class="waves-effect waves-block font-bold col-blue-grey">
+                          <i class="material-icons">visibility</i>
+                          View</a></li>
                       <li><a data-target="confirmDelete" href="{% url 'station-delete' pk=station.id %}" class="waves-effect waves-block font-bold col-blue-grey">
                         <i class="material-icons">delete</i>
                         Delete</a></li>
