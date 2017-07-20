@@ -32,7 +32,7 @@ class ProductDelete(DeleteView):
     '''
     model = Product
     template_name = '../templates/product_confirm_delete.html'
-    success_url = reverse_lazy('product-add')
+    success_url = reverse_lazy('product-list')
 
 
 class ProductList(AjaxListView):
@@ -45,14 +45,14 @@ class ProductList(AjaxListView):
 
     def get_queryset(self):
         '''
-         Return all the stations
+         Return all the Products
         '''
         return Product.objects.all()
 
 
 class ProductDetail(DetailView):
     '''
-     View station details
+     View Product details
     '''
     model = Product
-    template_name = '../templates/product_detail.html'
+    template_name = '../templates/product_details.html'

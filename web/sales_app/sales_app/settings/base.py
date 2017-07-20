@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 
     # Local apps
     'home',
-    'stations'
+    'stations',
+    'products'
 ]
 
 # https://docs.djangoproject.com/en/1.10/topics/auth/passwords/#using-argon2-with-django
