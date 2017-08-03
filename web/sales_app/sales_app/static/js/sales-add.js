@@ -1,3 +1,7 @@
+/**
+ * Variables
+ * @type Objects, array
+ */
 var template = $('.product-sales-form > .row:first').clone(true);
 var creditExpenseTemplate = $('.credit-expense-form > .row:first').clone(true);
 var otherSalesTemplate = template.clone(true);
@@ -25,14 +29,22 @@ var productSalesTotal = {
 var salesSummary = {
   total : 0
 };
-
-
 var petrolSales = new SALES.Compute();
 var desielSales = new SALES.Compute();
 var product = new SALES.Compute();
 var creditExpenses = new SALES.Compute();
 var totalSales = new SALES.Compute();
 
+/**
+ * [computeFuelSales description]
+ * @method computeFuelSales
+ * @param  {[type]}         fuelType     [description]
+ * @param  {[type]}         openingMeter [description]
+ * @param  {[type]}         closingMeter [description]
+ * @param  {[type]}         unitPrice    [description]
+ * @param  {[type]}         sales        [description]
+ * @return {[type]}                      [description]
+ */
 function computeFuelSales(fuelType, openingMeter, closingMeter, unitPrice, sales) {
   if(fuelType instanceof Object) {
     if(!isNaN(openingMeter)) {
@@ -58,6 +70,16 @@ function computeFuelSales(fuelType, openingMeter, closingMeter, unitPrice, sales
 
 }
 
+/**
+ * [computeTotalSales description]
+ * @method computeTotalSales
+ * @param  {[type]}          petrolSales    [description]
+ * @param  {[type]}          desielSales    [description]
+ * @param  {[type]}          product        [description]
+ * @param  {[type]}          creditExpenses [description]
+ * @param  {[type]}          total          [description]
+ * @return {[type]}                         [description]
+ */
 function computeTotalSales(petrolSales, desielSales, product, creditExpenses, total) {
   if(petrolSales instanceof Object &&
      desielSales instanceof Object &&
@@ -70,12 +92,23 @@ function computeTotalSales(petrolSales, desielSales, product, creditExpenses, to
   }
 }
 
+/**
+ * [totalSalesSummary description]
+ * @method totalSalesSummary
+ * @return {[type]}          [description]
+ */
 function totalSalesSummary() {
   var total = computeTotalSales(petrolSales, desielSales, productSalesTotal, creditExpenses, totalSales);
   salesSummary.total = total;
   $(document).find('.totalSales').html(total.toLocaleString());
 }
 
+/**
+ * [computeProductSales description]
+ * @method computeProductSales
+ * @param  {[type]}            productSalesIds [description]
+ * @return {[type]}                            [description]
+ */
 function computeProductSales(productSalesIds) {
    $(productSalesIds.join()).on('keyup change', function() {
      var productInputName = this.id.replace(/[0-9]/g, '');
@@ -109,6 +142,12 @@ function computeProductSales(productSalesIds) {
   return false;
 }
 
+/**
+ * [computeCreditExpenses description]
+ * @method computeCreditExpenses
+ * @param  {[type]}              creditExpenseIds [description]
+ * @return {[type]}                               [description]
+ */
 function computeCreditExpenses(creditExpenseIds) {
   $(creditExpenseIds.join()).on('keyup change', function() {
      var creditExpenseName = this.id.replace(/[0-9]/g, '');
@@ -140,6 +179,14 @@ function computeCreditExpenses(creditExpenseIds) {
   return false;
 }
 
+/**
+ * [copyForm description]
+ * @method copyForm
+ * @param  {[type]} template  [description]
+ * @param  {[type]} element   [description]
+ * @param  {[type]} formCount [description]
+ * @return {[type]}           [description]
+ */
 function copyForm(template, element, formCount) {
   var newTemplate = template.clone(true);
   generateElementIds(newTemplate, formCount);
@@ -148,6 +195,13 @@ function copyForm(template, element, formCount) {
   return newTemplate;
 }
 
+/**
+ * [generateElementIds description]
+ * @method generateElementIds
+ * @param  {[type]}           template  [description]
+ * @param  {[type]}           formCount [description]
+ * @return {[type]}                     [description]
+ */
 function generateElementIds(template, formCount) {
   template.find(':input').each(function(){
     //set id to store the updated section number
@@ -163,6 +217,12 @@ function generateElementIds(template, formCount) {
   return false;
 }
 
+/**
+ * [getNewElementIds description]
+ * @method getNewElementIds
+ * @param  {[type]}         template [description]
+ * @return {[type]}                  [description]
+ */
 function getNewElementIds(template) {
   var elementIds = [];
   template.find(':input').each(function(){
