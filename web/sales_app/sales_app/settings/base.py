@@ -48,11 +48,14 @@ INSTALLED_APPS = [
     'compressor',
     'bootstrap3',
     'el_pagination',
+    'simple_history',
+
 
     # Local apps
     'home',
     'stations',
-    'products'
+    'products',
+    'funds'
 ]
 
 # https://docs.djangoproject.com/en/1.10/topics/auth/passwords/#using-argon2-with-django
@@ -124,7 +127,10 @@ USE_L10N = True
 
 # https://docs.djangoproject.com/en/1.10/ref/settings/#use-tz
 USE_TZ = True
-
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = ','
+NUMBER_GROUPING = 3
+DECIMAL_SEPARATOR = '.'
 
 # MEDIA AND STATIC SETTINGS
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -192,6 +198,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 # LOGGING

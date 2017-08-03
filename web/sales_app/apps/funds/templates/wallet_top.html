@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="row col-md-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+            <span class="font-32 font-bold col-blue-grey">Top up</span>
+        </h2>
+      </div>
+      <div class="body clearfix">
+        <div class="row col-md-6">
+          <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{station.name}}
+              {% bootstrap_form form field_class='form-line' show_label=False error_css_class='error' %}
+              <button class="btn btn-lg btn-primary" type="submit">
+                  {% bootstrap_icon "star" %} Submit
+              </button>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

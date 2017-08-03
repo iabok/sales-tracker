@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from django.utils import timezone
+from simple_history.models import HistoricalRecords
 
 
 class Product(models.Model):
@@ -11,6 +12,7 @@ class Product(models.Model):
     unit_price = models.CharField(max_length=200)
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
+    history = HistoricalRecords()
 
     def get_absolute_url(self):
         '''
