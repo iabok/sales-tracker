@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     # Local apps
     'home',
     'stations',
-    'products'
+    'products',
+    'funds'
 ]
 
 # https://docs.djangoproject.com/en/1.10/topics/auth/passwords/#using-argon2-with-django
@@ -126,7 +127,10 @@ USE_L10N = True
 
 # https://docs.djangoproject.com/en/1.10/ref/settings/#use-tz
 USE_TZ = True
-
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = ','
+NUMBER_GROUPING = 3
+DECIMAL_SEPARATOR = '.'
 
 # MEDIA AND STATIC SETTINGS
 # Absolute filesystem path to the directory that will hold user-uploaded files.

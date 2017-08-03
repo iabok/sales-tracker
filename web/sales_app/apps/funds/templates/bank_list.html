@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row col-md-12">
+    <div class="card">
+      <div class="header clearfix">
+        {% for deposit in funds %}
+        <h2>
+            <span class="font-32 font-bold col-blue-grey">Bank Details</span>
+            <small>Last modified on: {{deposit.modified_date|date:"d, M, Y"}}</small>
+        </h2>
+      <hr>
+        <div class="col-md-6">
+          <div class="info-box">
+              <div class="icon bg-blue-grey">
+                  <i class="material-icons">equalizer</i>
+              </div>
+              <div class="content">
+                    <div class="text">UGX</div>
+                    <div class="number"><span class="font-32 font-bold col-blue-grey">{{deposit.amount}}</span></div>
+                </div>
+            </div>
+          </div>
+          <ul class="header-dropdown m-r--5">
+              <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                      <li><a href="{% url 'bank-update' pk=deposit.id %}" class="waves-effect waves-block font-bold col-blue-grey">
+                        <i class="material-icons">edit</i>
+                        Edit</a></li>
+                  </ul>
+              </li>
+          </ul>
+        {% endfor %}
+
+      </div>
+</div>
+{% endblock %}
