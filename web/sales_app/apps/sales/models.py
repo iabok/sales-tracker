@@ -23,7 +23,7 @@ class Sales(models.Model):
 
     def get_absolute_url(self):
         '''
-         Redirect to the product details page
+         Redirect to the sales list page
         '''
         return reverse('sales-list')
 
@@ -37,7 +37,7 @@ class Fuel(models.Model):
     opening_meter = models.IntegerField()
     closing_meter = models.IntegerField()
     unit_price = models.IntegerField()
-    sales_date = models.IntegerField()
+    sales_date = models.DateField()
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()
@@ -49,10 +49,10 @@ class ProductSales(models.Model):
     '''
     sales = models.ForeignKey(Sales, on_delete=models.CASCADE)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    product_name = models.IntegerField()
+    name = models.IntegerField()
     quantity = models.IntegerField()
     unit_price = models.IntegerField()
-    sales_date = models.IntegerField()
+    sales_date = models.DateField()
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()
@@ -66,7 +66,7 @@ class Expenses(models.Model):
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
     name = models.IntegerField()
     amount = models.IntegerField()
-    sales_date = models.IntegerField()
+    sales_date = models.DateField()
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()
