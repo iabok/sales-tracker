@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="row col-md-12">
+  <div class="card">
+    <div class="header">
+      <h2>
+        <span class="font-32 font-bold col-blue-grey">Sales</span>
+      </h2>
+    </div>
+    <div class="body clearfix">
+      <div class="row col-md-6">
+        <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row clearfix">
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.petrol_open field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.petrol_close field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.petrol_price field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+          </div>
+          <div class="row clearfix">
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_open field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_close field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_price field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+              </div>
+          </div>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Summary:</h3>
+            <h3>Petrol</h3>
+            <div class="row">
+              <div class="col-xs-8">
+                <span>Litres Sold : <span class="petrolLitres"></span> </span>
+                <br>
+              <span>Total Sales in UGX : <span class="petrolSales"></span></span>
+            </div>
+            </div>
+            <br>
+            <h3>Desiel</h3>
+            <div class="row">
+                <div class="col-xs-8">
+                  <span>Litres Sold : <span class="desielLitres"></span> </span>
+                  <br>
+                  <span>Total Sales in UGX : <span class="desielSales"></span></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-8">
+                  <span><h3>Sub-Total :</h3> <span class="totalSales"></span> </span>
+                </div>
+            </div>
+          </div>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Product Sales:</h3><button id="product-add" class="btn btn-success product-sales-add" type="button">Add</button>
+            <div id="product-sales-form" class="product-sales-form">
+              <div class="row">
+                <div class="col-xs-4">
+                    {% bootstrap_field form.credit_name field_class='form-line' show_label=False error_css_class='error' %}
+                </div>
+                <div class="col-xs-4">
+                  {% bootstrap_field form.quantity field_class='form-line' show_label=False error_css_class='error' %}
+                </div>
+                <div class="col-xs-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.price field_class='form-line' show_label=False error_css_class='error' %}
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger product-sales-remove" type="button">Remove</button>
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Other Sales:</h3>
+            <button id="other-sales-add" class="btn btn-success other-sales-add" type="button">Add</button>
+            <div id="other-sales-form" class="form-group other-sales-form">
+            </div>
+          </div>
+          <hr>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Credit:</h3><button id="creditExpense" class="btn btn-success credit-expense-add" type="button">Add</button>
+            <div id="creditExpenseForm" class="form-group credit-expense-form">
+                <div class="row">
+                  <div class="col-xs-4">
+                    {% bootstrap_field form.credit_name field_class='form-line' show_label=False error_css_class='error' %}
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      {% bootstrap_field form.amount field_class='form-line' show_label=False error_css_class='error' %}
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger credit-expense-remove" type="button">Remove</button>
+                      </span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Expenses:</h3>
+            <button id="expenseAdd" class="btn btn-success expense-add" type="button">Add</button>
+            <div id="expenseForm" class="form-group expense-form">
+            </div>
+          </div>
+          <hr>
+          <div class="row clearfix" style="margin-left:0px;">
+            <h3>Others:</h3>
+            <button id="otherExpenseAdd" class="btn btn-success other-expense-add" type="button">Add</button>
+            <div id="otherExpenseForm" class="form-group other-expense-form">
+            </div>
+          </div>
+          <hr>
+          <div class="row clearfix" style="margin-left:0px;">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-8">
+                  <span><h3>Total Cash :</h3> <span class="totalSales"></span> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <button class="btn btn-lg btn-primary" type="submit">
+              {% bootstrap_icon "star" %} Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

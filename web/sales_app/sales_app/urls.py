@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'', include('stations.urls')),
     url(r'', include('products.urls')),
     url(r'', include('funds.urls')),
+    url(r'', include('sales.urls')),
 
     # Admin
     # url(r'^admin/', include(admin.site.urls)),

@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'home',
     'stations',
     'products',
-    'funds'
+    'funds',
+    'sales'
 ]
 
 # https://docs.djangoproject.com/en/1.10/topics/auth/passwords/#using-argon2-with-django
