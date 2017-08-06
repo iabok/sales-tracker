@@ -11,6 +11,7 @@ class SalesFormView(View):
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
+        print(form)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
