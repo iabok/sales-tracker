@@ -48,7 +48,7 @@
   */
  SALES.Compute.prototype.productSales = function(productDetails) {
        if (productDetails instanceof Object) {
-         this.otherSalesSold = productDetails.quantity * productDetails.price;
+         this.otherSalesSold = productDetails.id_quantity * productDetails.id_price;
        }
 
        return this.otherSalesSold;
@@ -67,7 +67,7 @@
    if (productDetails instanceof Object) {
      for (var key in productDetails) {
          if (productDetails.hasOwnProperty(key)) {
-                if (productDetails[key]['total']) {
+                if (productDetails[key]['total'] && !isNaN(productDetails[key]['total'])) {
                     totalOfEachSale.push(productDetails[key]['total']);
                 }
          }
@@ -111,8 +111,8 @@
      if (creditDetails instanceof Object) {
        for (var key in creditDetails) {
            if (creditDetails.hasOwnProperty(key)) {
-               if(creditDetails[key]['creditAmount']) {
-                 totalOfEachCreditExpense.push(creditDetails[key]['creditAmount']);
+               if(creditDetails[key]['id_amount']) {
+                 totalOfEachCreditExpense.push(creditDetails[key]['id_amount']);
                }
            }
        }

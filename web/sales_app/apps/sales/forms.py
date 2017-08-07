@@ -10,7 +10,10 @@ class SalesForm(forms.Form):
     '''
      Sales Form
     '''
-    stations = forms.ModelMultipleChoiceField(queryset=Station.objects.all())
+    stations_list = Station.objects.values_list('id', 'name')
+    product_list = Product.objects.values_list('id', 'name')
+
+    stations = forms.ChoiceField(choices=stations_list)
     date = forms.CharField(required=True)
     petrol_open = forms.CharField(required=True)
     petrol_close = forms.CharField(required=True)
@@ -18,7 +21,7 @@ class SalesForm(forms.Form):
     desiel_open = forms.CharField(required=True)
     desiel_close = forms.CharField(required=True)
     desiel_price = forms.CharField(required=True)
-    product_name = forms.ModelMultipleChoiceField(queryset=Product.objects.values_list('name'))
+    product_name = forms.ChoiceField(choices=product_list)
     quantity = forms.CharField()
     price = forms.CharField()
     credit_name = forms.CharField()
