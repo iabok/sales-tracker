@@ -2,7 +2,7 @@ from .base import *  # noqa
 
 DEBUG = True
 
-INTERNAL_IPS = ["172.18.0.5"]
+INTERNAL_IPS = ["172.18.0.5", "127.0.0.1", "0.0.0.0"]
 
 SECRET_KEY = 'xw6zimru2&y8iqg$9fhi9#vm7gkd_xvrouc%1-k7l)w(qca#xg'
 
@@ -20,13 +20,12 @@ def show_toolbar(request):
 
 MIDDLEWARE_CLASSES += ["debug_toolbar.middleware.DebugToolbarMiddleware", ]
 INSTALLED_APPS += ["debug_toolbar", ]
-
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'HIDE_DJANGO_SQL': True,
     'TAG': 'body',
     'SHOW_TEMPLATE_CONTEXT': True,
-    'ENABLE_STACKTRACES': True,
+    'ENABLE_STACKTRACES': False,
     'SHOW_TOOLBAR_CALLBACK': 'sales_app.settings.development.show_toolbar',
 }
 

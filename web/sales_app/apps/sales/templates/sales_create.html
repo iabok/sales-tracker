@@ -78,7 +78,13 @@
             <div id="product-sales-form" class="product-sales-form">
               <div class="row">
                 <div class="col-xs-4">
-                    {% bootstrap_field form.product_name field_class='form-line' show_label=False error_css_class='error' %}
+
+                  <select class="form-control" id="id_product_name" name="product_name" title="">
+                    <option value="">Select a product</option>
+                    {% for id, name in form.fields.product_name.choices %}
+                      <option value="{{id}}">{{ name }}</option>
+                    {% endfor %}
+                  </select>
                 </div>
                 <div class="col-xs-4">
                   {% bootstrap_field form.quantity field_class='form-line' show_label=False error_css_class='error' %}

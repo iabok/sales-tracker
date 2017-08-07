@@ -116,6 +116,7 @@ function computeProductSales(productSalesIds) {
      if (isNaN(productSalesId)) {
         productSalesId = 1;
      }
+
      if (allProductSales.hasOwnProperty(productSalesId)) {
        allProductSales[productSalesId][productInputName] = $(this).val();
        allProductSales[productSalesId]['total'] = product.productSales(allProductSales[productSalesId]);
@@ -131,7 +132,8 @@ function computeProductSales(productSalesIds) {
        trackProductSales = {};
      }
 
-     if (productInputName === 'quantity' || productInputName === 'price'  ) {
+     if (productInputName === 'id_quantity' || productInputName === 'id_price'  ) {
+       console.log(allProductSales);
        productSalesTotal.total = product.totalOfProductSales(allProductSales);
        totalSalesSummary();
      }
@@ -169,7 +171,7 @@ function computeCreditExpenses(creditExpenseIds) {
        trackCreditExpenses = {};
      }
 
-     if (creditExpenseName === 'creditAmount') {
+     if (creditExpenseName === 'id_amount') {
          creditExpenses.creditExpenses(allCreditExpenses);
          totalSalesSummary();
      }
@@ -236,14 +238,14 @@ function getNewElementIds(template) {
 }
 
 $(function () {
-  $('#petrolOpen, #petrolClose, #petrolPrice, #desielOpen, #desielClose, #desielPrice, #prodcutName, #quantity, #price'
+  $('#id_petrol_open, #id_petrol_close, #id_petrol_price, #id_desiel_open, #id_desiel_close, #id_desiel_price, #id_prodcut_name, #id_quantity, #id_price'
    ).on('keyup change', function() {
-    var petrolOpenMeterNumber = $('#petrolOpen').val();
-    var petrolCloseMeterNumber = $('#petrolClose').val();
-    var desielOpenMeterNumber = $('#desielOpen').val();
-    var desielCloseMeterNumber = $('#desielClose').val();
-    var petrolUnitPrice = $('#petrolPrice').val();
-    var desielUnitPrice = $('#desielPrice').val();
+    var petrolOpenMeterNumber = $('#id_petrol_open').val();
+    var petrolCloseMeterNumber = $('#id_petrol_close').val();
+    var desielOpenMeterNumber = $('#id_desiel_open').val();
+    var desielCloseMeterNumber = $('#id_desiel_close').val();
+    var petrolUnitPrice = $('#id_petrol_price').val();
+    var desielUnitPrice = $('#id_desiel_price').val();
 
     var petrolCalucation = computeFuelSales(petrol, petrolOpenMeterNumber, petrolCloseMeterNumber, petrolUnitPrice, petrolSales);
     var desielCalucation = computeFuelSales(desiel, desielOpenMeterNumber, desielCloseMeterNumber, desielUnitPrice, desielSales);
@@ -274,6 +276,7 @@ $(function () {
       var element = this.id === 'other-sales-add' ? '#other-sales-form' : '#product-sales-form';
       var newTemplate = copyForm(template, element, formCount);
       var productSalesIds = getNewElementIds(newTemplate);
+      $(productSalesIds.join()).selectpicker();
       computeProductSales(productSalesIds);
       return false;
     });
