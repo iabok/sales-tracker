@@ -16,6 +16,9 @@ class SalesFormView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+        print(request.POST)
+        import pdb;
+        pdb.set_trace()
         if form.is_valid():
             # <process form cleaned data>
             return HttpResponseRedirect('/success/')
