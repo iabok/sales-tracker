@@ -44,21 +44,27 @@ class ProductSales:
          Returns the total of all product sales
          Returns an integer
         """
-        if not isinstance(self.product_name, list) \
-           or not isinstance(self.quantity, list) \
+        if not isinstance(self.quantity, list) \
            or not isinstance(self.price, list):
 
             return False
 
         return sum(map(lambda x: x[0] * x[1], zip(self.quantity, self.price)))
 
-    def getProductInsertFields(self, sales_id, station_id, sales_date):
+    def getProductInsertFields(self, missingFields):
         """
          Inserts the missing fields and cleans up the product sales \
          ready for insertion
+
+         missingFields = [sales_id, station_id, sales_date]
+         returns a namedtuple
         """
 
-        missingFields = [sales_id, station_id, sales_date]
+        if not isinstance(missingFields, list):
+
+            return False
+
+        self.mapFields()
         upackedFields = [i for i in map(list, *self.fields)]
         allFields = map(lambda field: field + missingFields, upackedFields)
 
