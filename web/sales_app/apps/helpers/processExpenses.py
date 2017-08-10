@@ -1,5 +1,5 @@
 '''
- Process the Expenses sales fields
+ Process the Expenses fields
 '''
 from collections import namedtuple
 
@@ -65,18 +65,3 @@ class Expenses:
         allFields = map(lambda field: field + missingFields, upackedFields)
 
         return list(map(self.ExpenseRecord._make, allFields))
-
-
-import unittest
-
-class TestProducMethods(unittest.TestCase):
-
-    def test_product_inserts_fields(self):
-        Expense = Expenses([1, 2], [3, 4])
-        #Expense.mapFields()
-        print(Expense.totalExpenses())
-        print(Expense.getExpenseInsertFields(['a', 'b', 'c']))
-
-
-if __name__ == '__main__':
-    unittest.main()
