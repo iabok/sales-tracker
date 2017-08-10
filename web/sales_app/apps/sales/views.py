@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 
 from sales.forms import SalesForm
+from helpers import processSales
 
 class SalesFormView(View):
     form_class = SalesForm
@@ -16,7 +17,8 @@ class SalesFormView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-        print(request.POST)
+        sales = processSales.Sales(request.POST)
+        print(sales.totalSales())
         import pdb;
         pdb.set_trace()
         if form.is_valid():
