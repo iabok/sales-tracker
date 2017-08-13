@@ -2,6 +2,7 @@
  Process the Fuel sales
 '''
 import operator
+from collections import namedtuple
 
 
 class FuelSales:
@@ -15,6 +16,8 @@ class FuelSales:
         """
         self.petrol = petrol
         self.desiel = desiel
+        self.fuelRecord = namedtuple('Fuel', 'closing_meter, \
+            unit_price, opening_meter, sales_id, station_id, sales_date')
 
     def computeLitresSold(self):
         """
@@ -58,3 +61,15 @@ class FuelSales:
         """
 
         return sum(self.computeFuelSales().values())
+
+    def insertMissingFields(self, missingFields):
+        fields = [list(self.petrol.values()), list(self.desiel.values())]
+
+        return map(lambda field: field + missingFields, fields)
+
+    def getFuelInsertData(self, missingFields):
+        """
+         returns a namedtuple for database insertion
+        """
+        fields = self.insertMissingFields(missingFields)
+        return list(map(self.fuelRecord._make, list(fields)))
