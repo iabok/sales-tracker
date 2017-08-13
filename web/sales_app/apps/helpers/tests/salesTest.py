@@ -37,5 +37,6 @@ class TestSalesMethods(unittest.TestCase):
         actual = self.sales.totalSales()
         self.assertEqual(expected, actual)
 
+
 if __name__ == '__main__':
     unittest.main()

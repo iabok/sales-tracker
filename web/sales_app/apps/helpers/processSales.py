@@ -2,9 +2,10 @@
  Process the sales
 '''
 import operator
-import processExpenses
-import processFuelSales
-import processProductSales
+
+from helpers import processExpenses
+from helpers import processFuelSales
+from helpers import processProductSales
 
 
 class Sales:
@@ -35,15 +36,15 @@ class Sales:
             self.sales['price'])
 
         petrol = {
-            'petrol_open': self.sales['petrol_open'][0],
-            'petrol_close': self.sales['petrol_close'][0],
-            'petrol_price': self.sales['petrol_price'][0]
+            'petrol_open': self.sales['petrol_open'],
+            'petrol_close': self.sales['petrol_close'],
+            'petrol_price': self.sales['petrol_price']
         }
 
         desiel = {
-            'desiel_open': self.sales['desiel_open'][0],
-            'desiel_close': self.sales['desiel_close'][0],
-            'desiel_price': self.sales['desiel_price'][0]
+            'desiel_open': self.sales['desiel_open'],
+            'desiel_close': self.sales['desiel_close'],
+            'desiel_price': self.sales['desiel_price']
         }
 
         fuel = processFuelSales.FuelSales(petrol, desiel)

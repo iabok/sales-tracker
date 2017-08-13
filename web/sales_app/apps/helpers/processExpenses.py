@@ -69,5 +69,5 @@ class Expenses:
          returns a namedtuple for database insertion
         """
         fields = self.getExpenseInsertFields(missingFields)
-        print()
+
         return list(map(self.ExpenseRecord._make, list(fields)))

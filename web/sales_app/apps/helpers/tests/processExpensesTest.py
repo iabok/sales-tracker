@@ -17,7 +17,6 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         actual = list(map(list, expenses))
 
         self.assertEqual(expectData, actual)
-        self.assertIsInstance(expenses, Iterable)
 
     def test_map_fields_method_fails_if_not_list(self):
         """
