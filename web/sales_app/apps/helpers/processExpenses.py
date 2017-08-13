@@ -15,7 +15,7 @@ class Expenses:
         '''
         self.name = name
         self.amount = amount
-        self.fields = []
+        self.fields = None
         self.ExpenseRecord = namedtuple('Expenses', 'name, amount, \
             sales_id, station_id, sales_date')
 
@@ -28,8 +28,7 @@ class Expenses:
 
             return False
 
-        self.fields.append(
-            zip(self.name, self.amount))
+        self.fields = zip(self.name, self.amount)
 
     def getMapFields(self):
         """
@@ -60,8 +59,14 @@ class Expenses:
 
             return False
 
-        self.mapFields()
-        upackedFields = [i for i in map(list, *self.fields)]
-        allFields = map(lambda field: field + missingFields, upackedFields)
+        self.getMapFields()
+        if self.getMapFields() is not None:
+            upackedFields = list(map(list, self.getMapFields()))
+            return map(lambda field: field + missingFields, upackedFields)
 
-        return list(map(self.ExpenseRecord._make, allFields))
+    def getProudctInsertData(self, missingFields):
+        """
+         returns a namedtuple for database insertion
+        """
+        fields = self.getExpenseInsertFields(missingFields)
+        return list(map(self.ExpenseRecord._make, list(fields)))
