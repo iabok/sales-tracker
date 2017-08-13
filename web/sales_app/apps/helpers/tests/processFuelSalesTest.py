@@ -1,6 +1,5 @@
 import unittest
 import processFuelSales
-from collections import namedtuple, Iterable
 
 
 class TestProcessingFuelSalesMethods(unittest.TestCase):
@@ -42,8 +41,8 @@ class TestProcessingFuelSalesMethods(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_map_fields_method(self):
-        expected = [[4, 2, 2, '2', '1', '2017-12-12'],
-                    [4, 3, 2, '2', '1', '2017-12-12']]
+        expected = [[2, 4, 2, '2', '1', '2017-12-12'],
+                    [2, 4, 3, '2', '1', '2017-12-12']]
         missingFields = ['2', '1', '2017-12-12']
         actual = self.sales.insertMissingFields(missingFields)
 
@@ -53,8 +52,8 @@ class TestProcessingFuelSalesMethods(unittest.TestCase):
         """
          Test get insert Data
         """
-        names = ('closing_meter', 'unit_price',
-                 'opening_meter', 'sales_id', 'station_id', 'sales_date')
+        names = ('opening_meter', 'closing_meter',
+                 'unit_price', 'sales_id', 'station_id', 'sales_date')
 
         missingFields = ['2', '1', '2017-12-12']
         actual = self.sales.getFuelInsertData(missingFields)

@@ -16,8 +16,8 @@ class FuelSales:
         """
         self.petrol = petrol
         self.desiel = desiel
-        self.fuelRecord = namedtuple('Fuel', 'closing_meter, \
-            unit_price, opening_meter, sales_id, station_id, sales_date')
+        self.fuelRecord = namedtuple('Fuel', 'opening_meter, \
+            closing_meter, unit_price, sales_id, station_id, sales_date')
 
     def computeLitresSold(self):
         """
@@ -63,7 +63,12 @@ class FuelSales:
         return sum(self.computeFuelSales().values())
 
     def insertMissingFields(self, missingFields):
-        fields = [list(self.petrol.values()), list(self.desiel.values())]
+        fields = [[self.petrol['petrol_open'],
+                   self.petrol['petrol_close'],
+                   self.petrol['petrol_price']],
+                  [self.desiel['desiel_open'],
+                   self.desiel['desiel_close'],
+                   self.desiel['desiel_price']]]
 
         return map(lambda field: field + missingFields, fields)
 

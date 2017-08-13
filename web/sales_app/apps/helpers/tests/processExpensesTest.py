@@ -1,6 +1,5 @@
 import unittest
 import processExpenses
-from collections import namedtuple, Iterable
 
 
 class TestProcessingExpensesMethods(unittest.TestCase):

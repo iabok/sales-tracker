@@ -1,6 +1,5 @@
 import unittest
 import processProductSales
-from collections import namedtuple, Iterable
 
 
 class TestProcessingProductSalesMethods(unittest.TestCase):
