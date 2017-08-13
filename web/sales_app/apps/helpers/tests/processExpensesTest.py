@@ -11,7 +11,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         testData['credit_name'],
         testData['amount'])
 
-    def test_map_fields_method(self):
+    def test_getting_mapped_fields(self):
         expectData = [['power', '3'], ['water', '4']]
         self.expenses.mapFields()
         expenses = self.expenses.getMapFields()
@@ -27,7 +27,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         expenses = processExpenses.Expenses(1, 2)
         self.assertFalse(expenses.mapFields())
 
-    def test_total_Product_Sales_method(self):
+    def test_total_expenses(self):
         """
          Test get total sales
         """
@@ -36,7 +36,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
 
         self.assertEqual(expectTotal, total)
 
-    def test_get_Product_Insert_Fields_method(self):
+    def test_get_expense_Insert_Fields(self):
         """
          Test inserting missing data
         """
@@ -47,7 +47,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         actual = self.expenses.getExpenseInsertFields(missingFields)
         self.assertEqual(expectData, list(actual))
 
-    def test_get_product_insert_data_method(self):
+    def test_get_expense_insert_data(self):
         """
          Test get insert Data
         """
