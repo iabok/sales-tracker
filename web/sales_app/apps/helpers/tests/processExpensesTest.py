@@ -43,7 +43,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         expectData = [['power', '3', '2', '1', '2017-12-12'],
                       ['water', '4', '2', '1', '2017-12-12']]
 
-        missingFields = ['2', '1', '2017-15-12']
+        missingFields = ['2', '1', '2017-12-12']
         actual = self.expenses.getExpenseInsertFields(missingFields)
         self.assertEqual(expectData, list(actual))
 
