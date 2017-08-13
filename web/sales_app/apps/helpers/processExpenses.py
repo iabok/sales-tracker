@@ -45,7 +45,7 @@ class Expenses:
 
             return False
 
-        return sum(self.amount)
+        return sum(map(int, self.amount))
 
     def getExpenseInsertFields(self, missingFields):
         """

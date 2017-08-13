@@ -28,10 +28,10 @@ class FuelSales:
             return False
 
         return {
-            'petrol': operator.sub(self.petrol['petrol_close'],
-                                   self.petrol['petrol_open']),
-            'desiel': operator.sub(self.desiel['desiel_close'],
-                                   self.desiel['desiel_open'])
+            'petrol': operator.sub(int(self.petrol['petrol_close']),
+                                   int(self.petrol['petrol_open'])),
+            'desiel': operator.sub(int(self.desiel['desiel_close']),
+                                   int(self.desiel['desiel_open']))
         }
 
     def computeFuelSales(self):
@@ -45,9 +45,9 @@ class FuelSales:
 
         return {
             'petrol': operator.mul(litresSold['petrol'],
-                                   self.petrol['petrol_price']),
+                                   int(self.petrol['petrol_price'])),
             'desiel': operator.mul(litresSold['desiel'],
-                                   self.desiel['desiel_price'])
+                                   int(self.desiel['desiel_price']))
         }
 
     def totalFuelSales(self):
