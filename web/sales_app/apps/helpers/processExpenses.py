@@ -59,14 +59,15 @@ class Expenses:
 
             return False
 
-        self.getMapFields()
+        self.mapFields()
         if self.getMapFields() is not None:
             upackedFields = list(map(list, self.getMapFields()))
             return map(lambda field: field + missingFields, upackedFields)
 
-    def getProudctInsertData(self, missingFields):
+    def getExpenseInsertData(self, missingFields):
         """
          returns a namedtuple for database insertion
         """
         fields = self.getExpenseInsertFields(missingFields)
+        print()
         return list(map(self.ExpenseRecord._make, list(fields)))
