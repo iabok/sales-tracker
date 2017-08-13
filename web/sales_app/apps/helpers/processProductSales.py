@@ -2,6 +2,7 @@
  Process the product sales fields
 '''
 from collections import namedtuple
+import operator
 
 
 class ProductSales:
@@ -16,7 +17,7 @@ class ProductSales:
         self.product_name = product_name
         self.quantity = quantity
         self.price = price
-        self.fields = []
+        self.fields = None
         self.productRecord = namedtuple('Product', 'name, quantity, \
             unit_price, sales_id, station_id, sales_date')
 
@@ -30,8 +31,7 @@ class ProductSales:
 
             return False
 
-        self.fields.append(
-            zip(self.product_name, self.quantity, self.price))
+        self.fields = zip(self.product_name, self.quantity, self.price)
 
     def getMapFields(self):
         """
@@ -49,7 +49,10 @@ class ProductSales:
 
             return False
 
-        return sum(map(lambda x: x[0] * x[1], zip(self.quantity, self.price)))
+        quantity = list(map(int, self.quantity))
+        price = list(map(int, self.price))
+
+        return sum(map(lambda x: operator.mul(*x), zip(quantity, price)))
 
     def getProductInsertFields(self, missingFields):
         """
@@ -57,7 +60,6 @@ class ProductSales:
          ready for insertion
 
          missingFields = [sales_id, station_id, sales_date]
-         returns a namedtuple
         """
 
         if not isinstance(missingFields, list):
@@ -65,7 +67,16 @@ class ProductSales:
             return False
 
         self.mapFields()
-        upackedFields = [i for i in map(list, *self.fields)]
-        allFields = map(lambda field: field + missingFields, upackedFields)
 
-        return list(map(self.productRecord._make, allFields))
+        if self.getMapFields() is not None:
+            upackedFields = list(map(list, self.getMapFields()))
+            return map(lambda field: field + missingFields, upackedFields)
+
+        return False
+
+    def getProudctInsertData(self, missingFields):
+        """
+         returns a namedtuple for database insertion
+        """
+        fields = self.getProductInsertFields(missingFields)
+        return list(map(self.productRecord._make, list(fields)))
