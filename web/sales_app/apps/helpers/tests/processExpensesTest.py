@@ -40,8 +40,8 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         """
          Test inserting missing data
         """
-        expectData = [['power', '3', '2', '1', '2017-15-12'],
-                      ['water', '4', '2', '1', '2017-15-12']]
+        expectData = [['power', '3', '2', '1', '2017-12-12'],
+                      ['water', '4', '2', '1', '2017-12-12']]
 
         missingFields = ['2', '1', '2017-15-12']
         actual = self.expenses.getExpenseInsertFields(missingFields)
@@ -53,7 +53,7 @@ class TestProcessingExpensesMethods(unittest.TestCase):
         """
         names = ('name', 'amount', 'sales_id', 'station_id', 'sales_date')
 
-        missingFields = ['2', '1', '2017-15-12']
+        missingFields = ['2', '1', '2017-12-12']
         actual = self.expenses.getExpenseInsertData(missingFields)
         actual = [x._fields for x in actual]
         self.assertEqual(names, actual.pop())
