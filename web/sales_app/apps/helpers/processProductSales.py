@@ -67,9 +67,9 @@ class ProductSales:
             return False
 
         self.mapFields()
-
         if self.getMapFields() is not None:
             upackedFields = list(map(list, self.getMapFields()))
+
             return map(lambda field: field + missingFields, upackedFields)
 
         return False
@@ -79,4 +79,5 @@ class ProductSales:
          returns a namedtuple for database insertion
         """
         fields = self.getProductInsertFields(missingFields)
+
         return list(map(self.productRecord._make, list(fields)))

@@ -51,7 +51,9 @@ class Sales:
         totalProductSales = products.totalProductSales()
         fuelSales = fuel.totalFuelSales()
 
-        return operator.add(fuelSales, totalProductSales)
+        if fuelSales is not False and totalProductSales is not False:
+
+            return operator.add(fuelSales, totalProductSales)
 
     def totalExpenses(self):
         """
@@ -67,7 +69,9 @@ class Sales:
             self.sales['credit_name'],
             self.sales['amount'])
 
-        return expenses.totalExpenses()
+        if expenses.totalExpenses() is not False:
+
+            return expenses.totalExpenses()
 
     def totalSales(self):
         totalRevenue = self.totalRevenue()
