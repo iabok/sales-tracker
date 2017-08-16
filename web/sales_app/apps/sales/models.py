@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from stations.models import Station
+from products.models import Product
 from simple_history.models import HistoricalRecords
 
 
@@ -49,7 +50,22 @@ class ProductSales(models.Model):
     '''
     sales = models.ForeignKey(Sales, on_delete=models.CASCADE)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    name = models.IntegerField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    unit_price = models.IntegerField()
+    sales_date = models.DateField()
+    created_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateTimeField(default=timezone.now)
+    history = HistoricalRecords()
+
+
+class otherSales(models.Model):
+    '''
+     Other Sales Model
+    '''
+    sales = models.ForeignKey(Sales, on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     quantity = models.IntegerField()
     unit_price = models.IntegerField()
     sales_date = models.DateField()
@@ -64,7 +80,7 @@ class Expenses(models.Model):
     '''
     sales = models.ForeignKey(Sales, on_delete=models.CASCADE)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    name = models.IntegerField()
+    name = models.CharField(max_length=200)
     amount = models.IntegerField()
     sales_date = models.DateField()
     created_date = models.DateTimeField(default=timezone.now)

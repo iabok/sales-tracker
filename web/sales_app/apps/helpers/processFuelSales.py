@@ -4,7 +4,6 @@
 import operator
 from collections import namedtuple
 
-
 class FuelSales:
     """
      Fuel process class
@@ -17,7 +16,7 @@ class FuelSales:
         self.petrol = petrol
         self.desiel = desiel
         self.fuelRecord = namedtuple('Fuel', 'opening_meter, \
-            closing_meter, unit_price, sales_id, station_id, sales_date')
+            closing_meter, unit_price, station_id, sales_date, sales')
 
     def computeLitresSold(self):
         """
@@ -72,9 +71,19 @@ class FuelSales:
 
         return map(lambda field: field + missingFields, fields)
 
-    def getFuelInsertData(self, missingFields):
+    def getFuelInsertData(self, missingFields, model):
         """
          returns a namedtuple for database insertion
         """
+        listOfFields = []
         fields = self.insertMissingFields(missingFields)
-        return list(map(self.fuelRecord._make, list(fields)))
+
+        for fuel in map(self.fuelRecord._make, list(fields)):
+            listOfFields.append(model['fuel'](opening_meter=fuel.opening_meter,
+                                sales_date=fuel.sales_date,
+                                closing_meter=fuel.closing_meter,
+                                unit_price=fuel.unit_price,
+                                station_id=fuel.station_id,
+                                sales=fuel.sales))
+
+        return listOfFields

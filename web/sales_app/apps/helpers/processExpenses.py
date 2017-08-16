@@ -17,7 +17,7 @@ class Expenses:
         self.amount = amount
         self.fields = None
         self.ExpenseRecord = namedtuple('Expenses', 'name, amount, \
-            sales_id, station_id, sales_date')
+             station_id, sales_date, sales')
 
     def mapFields(self):
         """
@@ -64,10 +64,17 @@ class Expenses:
             upackedFields = list(map(list, self.getMapFields()))
             return map(lambda field: field + missingFields, upackedFields)
 
-    def getExpenseInsertData(self, missingFields):
+    def getExpenseInsertData(self, missingFields, model):
         """
          returns a namedtuple for database insertion
         """
+        listOfFields = []
         fields = self.getExpenseInsertFields(missingFields)
+        for expense in map(self.ExpenseRecord._make, list(fields)):
+            listOfFields.append(model['expenses'](name=expense.name,
+                                amount=expense.amount,
+                                station_id=expense.station_id,
+                                sales_date=expense.sales_date,
+                                sales=expense.sales))
 
-        return list(map(self.ExpenseRecord._make, list(fields)))
+        return listOfFields

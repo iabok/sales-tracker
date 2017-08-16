@@ -19,7 +19,7 @@ class ProductSales:
         self.price = price
         self.fields = None
         self.productRecord = namedtuple('Product', 'name, quantity, \
-            unit_price, sales_id, station_id, sales_date')
+            unit_price, station_id, sales_date, sales')
 
     def mapFields(self):
         """
@@ -74,10 +74,18 @@ class ProductSales:
 
         return False
 
-    def getProudctInsertData(self, missingFields):
+    def getProudctInsertData(self, missingFields, model):
         """
          returns a namedtuple for database insertion
         """
+        listOfFields = []
         fields = self.getProductInsertFields(missingFields)
-
-        return list(map(self.productRecord._make, list(fields)))
+        for product in map(self.productRecord._make, list(fields)):
+            listOfFields.append(model['productSales'](
+                                name=product.name,
+                                quantity=product.quantity,
+                                unit_price=product.unit_price,
+                                station_id=product.station_id,
+                                sales_date=product.sales_date,
+                                sales=product.sales))
+        return listOfFields

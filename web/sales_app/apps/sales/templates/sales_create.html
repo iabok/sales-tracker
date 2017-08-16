@@ -16,34 +16,56 @@
           <div class="row clearfix">
               <div class="col-md-4">
                   <div class="input-group">
-                      {% bootstrap_field form.petrol_open field_class='form-line' show_label=False error_css_class='error' %}
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="input-group">
-                      {% bootstrap_field form.petrol_close field_class='form-line' show_label=False error_css_class='error' %}
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="input-group">
-                      {% bootstrap_field form.petrol_price field_class='form-line' show_label=False error_css_class='error' %}
+                    <p>
+                        <b>Station</b>
+                    </p>
+                    <select class="form-control" id="id_station_id" name="station_id" title="">
+                      <option value="">Select a station</option>
+                      {% for id, name in form.fields.stations.choices %}
+                        <option value="{{id}}">{{ name }}</option>
+                      {% endfor %}
+                    </select>
                   </div>
               </div>
           </div>
           <div class="row clearfix">
               <div class="col-md-4">
                   <div class="input-group">
-                      {% bootstrap_field form.desiel_open field_class='form-line' show_label=False error_css_class='error' %}
+                      {% bootstrap_field form.date field_class='form-line' show_label=True error_css_class='error' %}
+                  </div>
+              </div>
+          </div>
+          <div class="row clearfix">
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.petrol_open field_class='form-line' show_label=True error_css_class='error' %}
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="input-group">
-                      {% bootstrap_field form.desiel_close field_class='form-line' show_label=False error_css_class='error' %}
+                      {% bootstrap_field form.petrol_close field_class='form-line' show_label=True error_css_class='error' %}
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="input-group">
-                      {% bootstrap_field form.desiel_price field_class='form-line' show_label=False error_css_class='error' %}
+                      {% bootstrap_field form.petrol_price field_class='form-line' show_label=True error_css_class='error' %}
+                  </div>
+              </div>
+          </div>
+          <div class="row clearfix">
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_open field_class='form-line' show_label=True error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_close field_class='form-line' show_label=True error_css_class='error' %}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-group">
+                      {% bootstrap_field form.desiel_price field_class='form-line' show_label=True error_css_class='error' %}
                   </div>
               </div>
           </div>
@@ -75,10 +97,13 @@
           </div>
           <div class="row clearfix" style="margin-left:0px;">
             <h3>Product Sales:</h3><button id="product-add" class="btn btn-success product-sales-add" type="button">Add</button>
+          <br>
             <div id="product-sales-form" class="product-sales-form">
               <div class="row">
                 <div class="col-xs-4">
-
+                  <p>
+                      <b>Product</b>
+                  </p>
                   <select class="form-control" id="id_product_name" name="product_name" title="">
                     <option value="">Select a product</option>
                     {% for id, name in form.fields.product_name.choices %}
@@ -87,11 +112,11 @@
                   </select>
                 </div>
                 <div class="col-xs-4">
-                  {% bootstrap_field form.quantity field_class='form-line' show_label=False error_css_class='error' %}
+                  {% bootstrap_field form.quantity field_class='form-line' show_label=True error_css_class='error' %}
                 </div>
                 <div class="col-xs-4">
                   <div class="input-group">
-                      {% bootstrap_field form.price field_class='form-line' show_label=False error_css_class='error' %}
+                      {% bootstrap_field form.price field_class='form-line' show_label=True error_css_class='error' %}
                       <span class="input-group-btn">
                         <button class="btn btn-danger product-sales-remove" type="button">Remove</button>
                       </span>

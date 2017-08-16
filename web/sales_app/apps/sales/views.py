@@ -4,6 +4,8 @@ from django.views import View
 
 from sales.forms import SalesForm
 from helpers import processSales
+from sales.models import Sales, Fuel, ProductSales, Expenses
+
 
 class SalesFormView(View):
     form_class = SalesForm
@@ -17,20 +19,16 @@ class SalesFormView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         formData = request.POST
-        salesData = {
-            'petrol_open': formData['petrol_open'],
-            'petrol_close': formData['petrol_close'],
-            'petrol_price': formData['petrol_price'],
-            'desiel_open': formData['desiel_open'],
-            'desiel_close': formData['desiel_close'],
-            'desiel_price': formData['desiel_price'],
-            'product_name': formData.getlist('product_name'),
-            'quantity': formData.getlist('quantity'),
-            'price': formData.getlist('price'),
-            'credit_name': formData.getlist('credit_name'),
-            'amount': formData.getlist('amount')
+        models = {
+          'sales': Sales,
+          'fuel': Fuel,
+          'productSales': ProductSales,
+          'expenses': Expenses
         }
-        sales = processSales.Sales(salesData)
+        sales = processSales.Sale(formData, models)
+        s = sales.saveData()
+        print(s)
+        #s.save()
         # print(salesData)
         # print(sales.totalSales())
         # import pdb;
