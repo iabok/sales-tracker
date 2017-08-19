@@ -20,7 +20,7 @@ class Sale:
         self.models = model
         self.data = None
         self.sales = {
-            'station_id': formData['station_id'],
+            'station_id': formData['station'],
             'sales_date': formData['date'],
             'petrol_open': formData['petrol_open'],
             'petrol_close': formData['petrol_close'],

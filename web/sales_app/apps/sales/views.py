@@ -1,10 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import ListView, DetailView
 
-from sales.forms import SalesForm
+from el_pagination.views import AjaxListView
 from helpers import processSales
 from sales.models import Sales, Fuel, ProductSales, Expenses
+from sales.forms import SalesForm
 
 
 class SalesFormView(View):
@@ -18,23 +20,31 @@ class SalesFormView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-        formData = request.POST
-        models = {
-          'sales': Sales,
-          'fuel': Fuel,
-          'productSales': ProductSales,
-          'expenses': Expenses
-        }
-        sales = processSales.Sale(formData, models)
-        s = sales.saveData()
-        print(s)
-        #s.save()
-        # print(salesData)
-        # print(sales.totalSales())
-        # import pdb;
-        # pdb.set_trace()
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('/success/')
+            formData = request.POST
+            models = {
+              'sales': Sales,
+              'fuel': Fuel,
+              'productSales': ProductSales,
+              'expenses': Expenses
+            }
+
+            processSales.Sale(formData, models).saveData()
+            return reverse_lazy('sales-list')
 
         return render(request, self.template_name, {'form': form})
+
+
+class SalesList(AjaxListView):
+    '''
+     List of sales
+    '''
+    context_object_name = 'sales'
+    template_name = '../templates/sales_list.html'
+    page_template = '../templates/sales_list_page.html'
+
+    def get_queryset(self):
+        '''
+         Return all the stations
+        '''
+        return Sales.objects.all()

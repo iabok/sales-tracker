@@ -19,9 +19,9 @@
                     <p>
                         <b>Station</b>
                     </p>
-                    <select class="form-control" id="id_station_id" name="station_id" title="">
+                    <select class="form-control" id="id_station" name="station" title="">
                       <option value="">Select a station</option>
-                      {% for id, name in form.fields.stations.choices %}
+                      {% for id, name in form.fields.station.choices %}
                         <option value="{{id}}">{{ name }}</option>
                       {% endfor %}
                     </select>

@@ -82,7 +82,7 @@ class ProductSales:
         fields = self.getProductInsertFields(missingFields)
         for product in map(self.productRecord._make, list(fields)):
             listOfFields.append(model['productSales'](
-                                name=product.name,
+                                product_id=product.name,
                                 quantity=product.quantity,
                                 unit_price=product.unit_price,
                                 station_id=product.station_id,
