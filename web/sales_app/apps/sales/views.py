@@ -48,3 +48,11 @@ class SalesList(AjaxListView):
          Return all the stations
         '''
         return Sales.objects.all()
+
+
+class SalesDetail(DetailView):
+    '''
+     View sales details
+    '''
+    model = Sales
+    template_name = '../templates/sales_detail.html'
