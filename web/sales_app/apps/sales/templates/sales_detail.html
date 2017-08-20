@@ -52,6 +52,49 @@
              <table class="table table-hover">
                  <thead>
                      <tr>
+                         <th>Type</th>
+                         <th class="text-center">Opening Meter</th>
+                         <th class="text-center">closing Meter</th>
+                         <th class="text-center">Unit Price</th>
+                         <th class="text-center">Litres Sold</th>
+                         <th class="text-center">Total</th>
+                     </tr>
+                 </thead>
+                    <tbody>
+                      {% process_fuel as fuel %}
+                      {% for type in fuel.data %}
+                       {% for sale in type %}
+                         <tr>
+                             <td class="col-md-9"><h4><em>{{sale.type}}</em></h4></td>
+                             <td class="col-md-9" style="text-align: center">{{sale.opening_meter}}</td>
+                             <td class="col-md-1" style="text-align: center">{{sale.closing_meter}}</td>
+                             <td class="col-md-1" style="text-align: center">{{sale.unit_price}}</td>
+                             <td class="col-md-1" style="text-align: center">{{sale.litresSold}}</td>
+                             <td class="col-md-1" style="text-align: center">{{sale.total}}</td>
+                         </tr>
+                       {% endfor %}
+                     {% endfor %}
+                     <tr>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td class="text-right">
+                           <p>
+                            <strong>Subtotal: </strong>
+                           </p></td>
+                           <td class="text-center">
+                           <p>
+                             {% get_fuel_total fuel.total as fuel_sub_total %}
+                              <strong>{{fuel_sub_total}}</strong>
+                           </p>
+                         </td>
+                     </tr>
+                 </tbody>
+             </table>
+             <table class="table table-hover">
+                 <thead>
+                     <tr>
                          <th>Product</th>
                          <th>Qty</th>
                          <th class="text-center">Price</th>
@@ -82,7 +125,7 @@
                            </p>
                          </td>
                      </tr>
-                     <tr><td>Expenses</td></tr>
+                     <tr><td><strong>Expenses</strong></td></tr>
                      {% for expense in Expenses %}
                     <tr>
                         <td class="col-md-9"><h4><em>{{expense.name}}</em></h4></td>

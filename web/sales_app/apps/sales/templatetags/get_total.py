@@ -39,3 +39,40 @@ def get_total_expenses(context):
     """
 
     return sum(map(lambda x: x.amount, context['Expenses']))
+
+
+@register.simple_tag(takes_context=True)
+def process_fuel(context):
+    """
+     Reformats Fuel consumed
+    """
+    fuel = {
+      0: 'Petrol',
+      1: 'Desiel'
+    }
+    data = []
+    totals = []
+
+    for index, type in enumerate(context['Fuel']):
+        litresSold = operator.sub(type.closing_meter, type.opening_meter)
+        total = operator.mul(litresSold, type.unit_price)
+        totals.append(total)
+        data.append([
+                    {'type': fuel[index],
+                     'opening_meter': type.opening_meter,
+                     'closing_meter': type.closing_meter,
+                     'unit_price': type.unit_price,
+                     'litresSold': litresSold,
+                     'total': total}])
+    return {
+        'data': data,
+        'total': totals
+    }
+
+
+@register.simple_tag
+def get_fuel_total(totals):
+    """
+     return the total cash
+    """
+    return sum(totals)
