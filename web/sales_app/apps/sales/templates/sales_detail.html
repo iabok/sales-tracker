@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load get_total %}
 
 {% block content %}
 <div class="row col-md-12">
@@ -30,21 +31,17 @@
          <div class="row">
              <div class="col-xs-6 col-sm-6 col-md-6">
                  <address>
-                     <strong>Elf Cafe</strong>
+                     <strong>{{sales.station.name}}</strong>
                      <br>
-                     2135 Sunset Blvd
-                     <br>
-                     Los Angeles, CA 90026
-                     <br>
-                     <abbr title="Phone">P:</abbr> (213) 484-6829
+                     {{sales.station.location}}
                  </address>
              </div>
              <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                  <p>
-                   <em>Date: 1st November, 2013</em>
+                   <em>Date: {{sales.sales_date}}</em>
                  </p>
                  <p>
-                   <em>Receipt #: 34522677W</em>
+                   <em>Receipt #: {{sales.id}}</em>
                  </p>
              </div>
          </div>
@@ -67,7 +64,8 @@
                          <td class="col-md-9"><h4><em>{{product.product.name}}</em></h4></td>
                          <td class="col-md-1" style="text-align: center">{{product.quantity}}</td>
                          <td class="col-md-1 text-center">{{product.unit_price}}</td>
-                         <td class="col-md-1 text-center">{{product.unit_price}}</td>
+                         {% get_total product.quantity product.unit_price as total %}
+                         <td class="col-md-1 text-center">{{total}}</td>
                      </tr>
                      {% endfor %}
                      <tr>
@@ -76,19 +74,37 @@
                          <td class="text-right">
                            <p>
                             <strong>Subtotal: </strong>
-                           </p>
-                           <p>
-                               <strong>Tax: </strong>
                            </p></td>
                            <td class="text-center">
                            <p>
-                              <strong>$6.94</strong>
-                           </p>
-                           <p>
-                             <strong>$6.94</strong>
+                             {% get_total_products as product_sub_total %}
+                              <strong>{{product_sub_total}}</strong>
                            </p>
                          </td>
                      </tr>
+                     <tr><td>Expenses</td></tr>
+                     {% for expense in Expenses %}
+                    <tr>
+                        <td class="col-md-9"><h4><em>{{expense.name}}</em></h4></td>
+                        <td class="col-md-1" style="text-align: center">---</td>
+                        <td class="col-md-1 text-center">{{expense.amount}}</td>
+                        <td class="col-md-1 text-center">{{expense.amount}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right">
+                          <p>
+                          {% get_total_expenses as expense_sub_total %}
+                           <strong>Subtotal: </strong>
+                          </p> </td>
+                          <td class="text-center">
+                          <p>
+                             <strong>{{expense_sub_total}}</strong>
+                          </p>
+                        </td>
+                    </tr>
                      <tr>
                          <td></td>
                          <td></td>

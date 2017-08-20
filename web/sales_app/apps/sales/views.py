@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView
 from el_pagination.views import AjaxListView
 from helpers import processSales
 from sales.models import Sales, Fuel, ProductSales, Expenses
+from stations.models import Station
 from sales.forms import SalesForm
 
 
@@ -78,8 +79,7 @@ class SalesDetail(DetailView):
         context = super(SalesDetail, self).get_context_data(**self.kwargs)
         context['Fuel'] = Fuel.objects.filter(sales_id=self.kwargs['pk'])
         context['Products'] = ProductSales.objects.filter(
-                              sales_id=self.kwargs['pk']).select_related('product')
+                              sales_id=self.kwargs['pk'])
         context['Expenses'] = Expenses.objects.filter(
                               sales_id=self.kwargs['pk'])
-        print(context)
         return context
