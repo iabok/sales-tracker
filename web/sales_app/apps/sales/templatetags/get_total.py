@@ -76,3 +76,12 @@ def get_fuel_total(totals):
      return the total cash
     """
     return sum(totals)
+
+
+@register.simple_tag
+def get_total_sales(fuelSales, productSales):
+    """
+     returns total sales
+    """
+
+    return operator.add(int(fuelSales), int(productSales))

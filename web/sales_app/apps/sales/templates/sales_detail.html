@@ -45,18 +45,21 @@
                  </p>
              </div>
          </div>
+         <hr>
          <div class="row">
              <div class="text-center">
                <h1>Receipt</h1>
              </div>
+             <br>
+             <br>
              <table class="table table-hover">
                  <thead>
                      <tr>
-                         <th>Type</th>
-                         <th class="text-center">Opening Meter</th>
-                         <th class="text-center">closing Meter</th>
-                         <th class="text-center">Unit Price</th>
-                         <th class="text-center">Litres Sold</th>
+                         <th>Fuel</th>
+                         <th class="text-center">Opening</th>
+                         <th class="text-center">Closing</th>
+                         <th class="text-center">Litres</th>
+                         <th class="text-center">Price</th>
                          <th class="text-center">Total</th>
                      </tr>
                  </thead>
@@ -68,8 +71,8 @@
                              <td class="col-md-9"><h4><em>{{sale.type}}</em></h4></td>
                              <td class="col-md-9" style="text-align: center">{{sale.opening_meter}}</td>
                              <td class="col-md-1" style="text-align: center">{{sale.closing_meter}}</td>
-                             <td class="col-md-1" style="text-align: center">{{sale.unit_price}}</td>
                              <td class="col-md-1" style="text-align: center">{{sale.litresSold}}</td>
+                             <td class="col-md-1" style="text-align: center">{{sale.unit_price}}</td>
                              <td class="col-md-1" style="text-align: center">{{sale.total}}</td>
                          </tr>
                        {% endfor %}
@@ -83,7 +86,7 @@
                            <p>
                             <strong>Subtotal: </strong>
                            </p></td>
-                           <td class="text-center">
+                           <td class="text-center text-success">
                            <p>
                              {% get_fuel_total fuel.total as fuel_sub_total %}
                               <strong>{{fuel_sub_total}}</strong>
@@ -92,11 +95,18 @@
                      </tr>
                  </tbody>
              </table>
+             <div class="text-left">
+               <h3>Products</h3>
+             </div>
+             <br>
              <table class="table table-hover">
                  <thead>
                      <tr>
+
                          <th>Product</th>
-                         <th>Qty</th>
+                         <th></th>
+                         <th></th>
+                         <th class="text-center">Qty</th>
                          <th class="text-center">Price</th>
                          <th class="text-center">Total</th>
                      </tr>
@@ -105,6 +115,8 @@
                       {% for product in Products %}
                      <tr>
                          <td class="col-md-9"><h4><em>{{product.product.name}}</em></h4></td>
+                         <td></td>
+                         <td></td>
                          <td class="col-md-1" style="text-align: center">{{product.quantity}}</td>
                          <td class="col-md-1 text-center">{{product.unit_price}}</td>
                          {% get_total product.quantity product.unit_price as total %}
@@ -114,21 +126,35 @@
                      <tr>
                          <td></td>
                          <td></td>
+                         <td></td>
+                         <td></td>
                          <td class="text-right">
                            <p>
                             <strong>Subtotal: </strong>
                            </p></td>
-                           <td class="text-center">
+                           <td class="text-center text-success">
                            <p>
                              {% get_total_products as product_sub_total %}
                               <strong>{{product_sub_total}}</strong>
                            </p>
                          </td>
                      </tr>
-                     <tr><td><strong>Expenses</strong></td></tr>
+                     <tr>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td class="text-right"><h4><strong>Sales: </strong></h4></td>
+                       <td class="text-center text-danger"><h4><strong>
+                         {% get_total_sales fuel_sub_total product_sub_total as total_sales %}
+                          {{total_sales}}
+                       </strong></h4></td>
+                     </tr>
+                     <tr><td><strong><h3>Expenses</h3></strong></td></tr>
                      {% for expense in Expenses %}
                     <tr>
                         <td class="col-md-9"><h4><em>{{expense.name}}</em></h4></td>
+                        <td></td>
+                        <td></td>
                         <td class="col-md-1" style="text-align: center">---</td>
                         <td class="col-md-1 text-center">{{expense.amount}}</td>
                         <td class="col-md-1 text-center">{{expense.amount}}</td>
@@ -137,18 +163,21 @@
                     <tr>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                         <td class="text-right">
                           <p>
                           {% get_total_expenses as expense_sub_total %}
                            <strong>Subtotal: </strong>
                           </p> </td>
-                          <td class="text-center">
+                          <td class="text-center text-success">
                           <p>
                              <strong>{{expense_sub_total}}</strong>
                           </p>
                         </td>
                     </tr>
                      <tr>
+                        <td></td>
                          <td></td>
                          <td></td>
                          <td class="text-right"><h4><strong>Total: </strong></h4></td>
