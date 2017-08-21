@@ -1,0 +1,15 @@
+{% load el_pagination_tags %}
+{% paginate accounts %}
+{% for account in accounts %}
+
+    <tr>
+        <th scope="row"></th>
+        <td>{{account.user.username}}</td>
+        <td>{{account.user.first_name}}</td>
+        <td>{{account.user.last_name}}</td>
+        <td>{{account.station.name}}</td>
+        <td>{{account.created_date|date:"d-M-Y"}}</td>
+        <td>{{account.modified_date|date:"d-M-Y"}}</td>
+    </tr>
+{% endfor %}
+{% show_more %}

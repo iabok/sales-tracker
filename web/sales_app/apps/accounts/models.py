@@ -10,8 +10,8 @@ from simple_history.models import HistoricalRecords
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    location = models.CharField(max_length=30, blank=True)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE, null=True, blank=True)
+    location = models.CharField(max_length=30, null=True, blank=True)
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()

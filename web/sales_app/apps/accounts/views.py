@@ -1,12 +1,15 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
 
+from el_pagination.views import AjaxListView
 from accounts.forms import SignUpForm
+from accounts.models import Profile
 
 
 class AccountsFormView(View):
@@ -35,9 +38,7 @@ class AccountsFormView(View):
             user = form.save()
             # load the profile instance created by the signal
             user.refresh_from_db()
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.station = form.cleaned_data.get('station')
+            user.profile.station_id = form.cleaned_data.get('station')
             user.profile.location = form.cleaned_data.get('location')
             user.save()
             raw_password = form.cleaned_data.get('password1')
@@ -47,3 +48,19 @@ class AccountsFormView(View):
             return HttpResponseRedirect('/home/')
 
         return render(request, self.template_name, {'form': form})
+
+
+class accountsList(AjaxListView):
+    '''
+     List of sales
+    '''
+    context_object_name = 'accounts'
+    template_name = '../templates/accounts_list.html'
+    page_template = '../templates/accounts_list_page.html'
+
+    def get_queryset(self):
+        '''
+         Return all the stations
+        '''
+
+        return Profile.objects.all()
