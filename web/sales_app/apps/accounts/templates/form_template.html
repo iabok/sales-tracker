@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+  <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {% bootstrap_field field field_class='form-line' show_label=False error_css_class='error' %}
+        {% if field.help_text %}
+          <small  class="text-success">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button class="btn btn-lg btn-primary" type="submit">
+        {% bootstrap_icon "star" %} Submit
+    </button>
+  </form>
+{% endblock %}

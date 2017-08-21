@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'', include('products.urls')),
     url(r'', include('funds.urls')),
     url(r'', include('sales.urls')),
+    url(r'', include('accounts.urls')),
 
     # Admin
     # url(r'^admin/', include(admin.site.urls)),

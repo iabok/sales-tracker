@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="row col-md-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+            <span class="font-32 font-bold col-blue-grey">Add a User</span>
+        </h2>
+      </div>
+      <div class="body clearfix">
+        <div class="row col-md-4">
+            {% include 'form_template.html' %}
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
